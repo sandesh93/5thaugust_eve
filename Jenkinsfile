@@ -10,6 +10,12 @@ node{
             sh 'mvn compile'
         }
     }
+    stage('AB CodeReview'){
+        wihMaven(maven:'MyMaven'){
+            sh 'mvn pmd:pmd'   
+        }
+        // publish visuals of target/pmd.xml
+    }
     stage('AB Package'){
         withMaven(maven:'MyMaven'){
             sh 'mvn package'
